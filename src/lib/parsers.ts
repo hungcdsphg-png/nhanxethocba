@@ -84,8 +84,14 @@ export async function parseExcelKQGD(file: File): Promise<StudentData[]> {
         
         const sttIdx = getColumnIndex(["stt"]);
         const nameIdx = getColumnIndex(["họvàtên", "họtên", "hộtên", "tên học sinh"]);
-        const dobIdx = getColumnIndex(["ngàysinh", "ngàythángnămsinh"]);
-        const genderIdx = getColumnIndex(["nữ"]);
+        const dobIdx = getColumnIndex(["ngàysinh", "ngàythángnămsinh", "ngàysinh"]);
+        let genderIdx = getColumnIndex(["nữ", "giới tính"]);
+        
+        // Fallback for gender column if not found (usually column 4 in these templates)
+        if (genderIdx === -1) genderIdx = 3; 
+        
+        // Ensure nameIdx is at least found, or use a default
+        const finalNameIdx = nameIdx !== -1 ? nameIdx : 1;
 
         // 5. Parse student data
         const students: StudentData[] = [];
@@ -93,7 +99,7 @@ export async function parseExcelKQGD(file: File): Promise<StudentData[]> {
 
         dataRows.forEach((row) => {
           const sttValue = row[sttIdx]?.toString().trim();
-          if (row[nameIdx] && sttValue && !isNaN(Number(sttValue))) {
+          if (row[finalNameIdx] && sttValue && !isNaN(Number(sttValue))) {
             const details: string[] = [];
             const parsedResults: Record<string, string> = {};
             
@@ -124,8 +130,8 @@ export async function parseExcelKQGD(file: File): Promise<StudentData[]> {
 
             students.push({
               stt: Number(sttValue),
-              id: "",
-              name: row[nameIdx]?.toString().trim() || "",
+              id: `student_${sttValue}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+              name: row[finalNameIdx]?.toString().trim() || "",
               dob: row[dobIdx]?.toString().trim() || "",
               gender: row[genderIdx]?.toString().toUpperCase() === "X" ? "Nữ" : "Nam",
               results: details.join("; "),

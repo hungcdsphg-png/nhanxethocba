@@ -5,22 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Google AI Studio App</title>
     <script>
-      // Firewall against libraries trying to override read-only window.fetch
+      // Prevent libraries from crashing by trying to overwrite the read-only window.fetch
       (function() {
+        var originalFetch = window.fetch;
         try {
-          var feat = window.fetch;
-          if (feat) {
-            Object.defineProperty(window, 'fetch', {
-              configurable: true,
-              enumerable: true,
-              get: function() { return feat; },
-              set: function(v) { 
-                console.warn('Prevented attempt to override window.fetch');
-              }
-            });
-          }
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get: function() { return originalFetch; },
+            set: function(v) { 
+              // Silently ignore attempts to override window.fetch
+            }
+          });
         } catch (e) {
-          console.error('Failed to apply fetch firewall:', e);
+          // Fallback if defineProperty fails
         }
       })();
     </script>
