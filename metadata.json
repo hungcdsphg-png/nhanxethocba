@@ -1,0 +1,5 @@
+{
+  "name": "Remix: Trợ lý nhận xét học bạ",
+  "description": "Ứng dụng hỗ trợ giáo viên chủ nhiệm tạo lời nhận xét học bạ tự động dựa trên kết quả giáo dục và phân phối chương trình.",
+  "requestFramePermissions": []
+}
