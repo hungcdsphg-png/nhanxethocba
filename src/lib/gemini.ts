@@ -31,15 +31,15 @@ export async function generateStudentComment(
     YÊU CẦU NGHIÊM NGẶT VỀ CẤU TRÚC VÀ LỜI VĂN:
     1. KHÔNG nhắc tên học sinh trong lời nhận xét.
     2. KHÔNG xưng hô "con", "em", "học sinh" hay bất kỳ đại từ nhân xưng nào. Hãy viết trực tiếp vào hành động và kết quả (Ví dụ: thay vì "Em học tốt", hãy viết "Học tập chuyên cần, tiếp thu bài nhanh...").
-    3. KHÔNG nhắc đến điểm số cụ thể (ví dụ: không viết "đạt 9 điểm", "Toán 10"). Chỉ nhận xét dựa trên mức độ hoàn thành và năng lực thực tế.
-    4. Lời văn: Mộc mạc, giản dị, chân phương, phù hợp với đời sống học sinh vùng cao. Tránh dùng từ ngữ hoa mỹ, hàn lâm.
-    5. TUYỆT ĐỐI KHÔNG sử dụng các cụm từ sáo rỗng, hào nhoáng như: "Xứng đáng được khen thưởng vì những nỗ lực vượt bậc và thành tích tiêu biểu trong năm học" hoặc các biến thể tương tự mang tính chất hành chính, máy móc.
-    6. Phân tích kết quả:
-       - Nếu đa số đạt mức 'T': Nhận xét theo hướng Hoàn thành tốt/Xuất sắc.
-       - Nếu đa số đạt mức 'Đ': Nhận xét theo hướng Hoàn thành.
-       - Nếu có môn 'C': Nhận xét thẳng thắn nhưng nhẹ nhàng về những phần chưa đạt.
-    7. Khen thưởng: Nếu có khen thưởng (đánh dấu 'x'), hãy lồng ghép sự ghi nhận nỗ lực và kết quả tốt vào mạch văn chung một cách tự nhiên. TUYỆT ĐỐI KHÔNG thêm câu chốt về khen thưởng hay phần khen thưởng riêng biệt ở cuối nội dung nhận xét.
-    8. Độ dài: Tối đa 850 ký tự.
+    3. KHÔNG đưa con số điểm cụ thể (ví dụ: không viết "đạt 9 điểm", "Toán 10") vào lời nhận xét. Chỉ lấy điểm số làm cơ sở ngầm để đánh giá một cách sát sao.
+    4. Lời văn: Tự nhiên, mộc mạc, chân phương, phù hợp với đời sống học sinh vùng cao. Tránh dùng từ ngữ hoa mỹ, sáo rỗng.
+    5. TUYỆT ĐỐI KHÔNG sử dụng các cụm từ sáo rỗng kiểu hành chính như: "Xứng đáng được khen thưởng vì những nỗ lực vượt bậc...", v.v.
+    6. Phân tích kết quả - BẮT BUỘC PHẢI LUẬN TỪ ĐIỂM (Điểm KTĐK) VÀ MỨC ĐẠT ĐƯỢC:
+       - Phân tích Điểm KTĐK (thang điểm 10): Điểm 9-10 (nắm chắc kiến thức, học rất tốt), Điểm 7-8 (học khá, hiểu bài nhưng có thể còn sơ suất), Điểm 5-6 (học trung bình, tiếp thu chậm), <5 (cần cố gắng rất nhiều).
+       - Phân tích Mức đạt được chữ cái: Môn học (T: Tốt, H: Hoàn thành, C: Chưa hoàn thành); Năng lực/Phẩm chất (T: Tốt, Đ: Đạt, C: Cần cố gắng).
+       - Tổng hợp chéo: Ví dụ Toán cao nhưng Tiếng Việt thấp, thì nhận xét có thế mạnh tính toán nhưng đọc/viết cần rèn thêm; hoặc phẩm chất đều T nhưng điểm số chỉ H thì nhận xét ngoan ngoãn, chăm chỉ nhưng cần tăng cường học tập. Hãy luân phiên linh hoạt để mỗi học sinh có lời nhận xét cá nhân hóa và sát nhất.
+    7. Khen thưởng: Nếu có khen thưởng (đánh dấu 'x'), hãy lồng ghép sự ghi nhận nỗ lực vào mạch văn chung tự nhiên, tuyệt đối không tách riêng thành một câu khen thưởng cứng nhắc ở cuối.
+    8. Độ dài: Khoảng 3-5 câu (tối đa 850 ký tự), ngắn gọn, đúng trọng tâm.
     9. Định dạng: Chỉ trả về nội dung lời nhận xét.
   `;
 

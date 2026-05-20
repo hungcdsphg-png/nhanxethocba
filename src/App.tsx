@@ -100,42 +100,24 @@ export default function App() {
     for (let i = 0; i < updatedStudents.length; i++) {
       if (stopRef.current) break;
       
-      let success = false;
-      let retries = 0;
-      const maxRetries = 2; // Thử lại tối đa 2 lần (tổng cộng 3 lần thử)
-
-      while (!success && retries <= maxRetries && !stopRef.current) {
-        try {
-          const comment = await generateStudentComment(
-            userApiKey,
-            updatedStudents[i], 
-            curriculum, 
-            grade, 
-            className
-          );
-          updatedStudents[i] = { 
-            ...updatedStudents[i], 
-            comment,
-            generatedForGrade: grade,
-            generatedForClass: className
-          };
-          setStudents([...updatedStudents]);
-          setProgress(prev => ({ ...prev, current: i + 1 }));
-          success = true;
-        } catch (err) {
-          retries++;
-          console.error(`Lỗi tạo nhận xét cho ${updatedStudents[i].name} (Lần thử ${retries}):`, err);
-          
-          if (retries <= maxRetries && !stopRef.current) {
-            // Đợi 1 giây trước khi thử lại
-            await new Promise(resolve => setTimeout(resolve, 1000));
-          } else {
-            // Nếu đã thử hết số lần mà vẫn lỗi, bỏ qua và tiếp tục học sinh tiếp theo
-            console.warn(`Đã thử ${retries} lần cho ${updatedStudents[i].name} nhưng vẫn thất bại. Chuyển sang học sinh kế tiếp.`);
-            setProgress(prev => ({ ...prev, current: i + 1 }));
-            break; 
-          }
-        }
+      try {
+        const comment = await generateStudentComment(
+          userApiKey,
+          updatedStudents[i], 
+          curriculum, 
+          grade, 
+          className
+        );
+        updatedStudents[i] = { 
+          ...updatedStudents[i], 
+          comment,
+          generatedForGrade: grade,
+          generatedForClass: className
+        };
+        setStudents([...updatedStudents]);
+        setProgress(prev => ({ ...prev, current: i + 1 }));
+      } catch (err) {
+        console.error(`Error generating comment for ${updatedStudents[i].name}:`, err);
       }
     }
     
